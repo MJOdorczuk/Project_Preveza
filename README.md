@@ -14,4 +14,4 @@ Użytkownicy mają możliwe komendy jak:
   poddanie się
   zaakceptowanie zaproszenia do gry
   
-Sam serwer będzie miał możliwość wyświetlanie w czasie rzeczywistym rozgrywki.
+Sam serwer będzie miał możliwość wyświetlanie w czasie rzeczywistym rozgrywki (użycie biblioteki SFML). Klienci grają na  ślepo.
