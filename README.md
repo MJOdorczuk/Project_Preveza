@@ -1,4 +1,4 @@
-# Project_Preveza
+# Project Preveza
 
 Implementacja gry w statki na gotowym serwerze.
 
