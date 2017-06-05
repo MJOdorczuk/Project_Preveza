@@ -112,3 +112,8 @@ void ConnectedClient::getReady()
 {
     return this->ready;
 }
+
+void ConnectedClient::setReady(bool state)
+{
+    this->ready = state;
+}
