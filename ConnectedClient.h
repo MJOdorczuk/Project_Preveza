@@ -21,11 +21,13 @@ public:
 	TCPServer* getServer() { return server; }
 	string getUser() { return user; }
 	TCPServer* server;
+	bool getReady();
 
 protected:
     static void* run(void *);
 	
 private:
+    bool ready;
     uint32_t ip;
     uint16_t port;
     int connected_socket;
