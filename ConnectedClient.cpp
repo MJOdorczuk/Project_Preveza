@@ -107,3 +107,8 @@ void* ConnectedClient::run(void* arg)
     client->server->removeClient(client);
     return NULL;
 }
+
+void ConnectedClient::getReady()
+{
+    return this->ready;
+}
