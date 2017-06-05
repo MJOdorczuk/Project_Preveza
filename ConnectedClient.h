@@ -22,6 +22,7 @@ public:
 	string getUser() { return user; }
 	TCPServer* server;
 	bool getReady();
+	void setReady(bool state);
 
 protected:
     static void* run(void *);
