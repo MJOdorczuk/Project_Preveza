@@ -1,7 +1,9 @@
+
 #pragma once
 #include "common.h"
 #include "ConnectedClient.h"
 #include "Commands.h"
+#include "GameSocket.h"
 
 class ConnectedClient;
 class CommandEngine;
@@ -35,5 +37,6 @@ private:
     uint16_t port;
     pthread_t thread_id;
     vector<ConnectedClient*> clients;
+    vector<GameSocket*> games;
 };
 
