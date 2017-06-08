@@ -46,6 +46,12 @@ class GameSocket
         //  Pointers to ConnectedClient class type objects responsible for connecting players with game
         //
         ConnectedClient *player1, *player2;
+        //
+        //  The turn variable is information who is supposed to make his movement right now
+        //
+        //  false - first player, true - second player
+        //
+        bool turn;
 };
 
 #endif // GAMESOCKET_H
