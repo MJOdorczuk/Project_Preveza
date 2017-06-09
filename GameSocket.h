@@ -35,10 +35,17 @@ class GameSocket
         //
     const uint8_t HIT_SHIP;
         //
-        //  It's returned by method
+        //  It's returned by method getTurn(turn).
+        //
+        //  Is returned when first player is supposed to make a move.
         //
     const uint8_t PLAYER1_TURN;
-    const uint8_t PLAYER@_TURN;
+        //
+        //  It's returned by method getTurn(turn).
+        //
+        //  Is returned when second player is supposed to make a move.
+        //
+    const uint8_t PLAYER2_TURN;
         //
         //  Virtual destructor of GameSocket
         //
@@ -52,7 +59,7 @@ class GameSocket
         uint8_t ifHit(string coordinates, ConnectedClient *Player);
         uint8_t getPlayersNumbers(){return players.size()};
         vector<ConnectedClients*> getPlayers(){return players};
-        uint8_t getTurn(){;
+        uint8_t getTurn(){return this->turn};
     protected:
     private:
         //
