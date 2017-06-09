@@ -34,6 +34,9 @@ class GameSocket
         //  Is returned when there's ship and the field was hit by other player.
         //
     const uint8_t HIT_SHIP;
+        //
+        //  It's returned by method
+        //
     const uint8_t PLAYER1_TURN;
     const uint8_t PLAYER@_TURN;
         //
@@ -47,8 +50,9 @@ class GameSocket
         //
         bool addPlayer(ConnectedClient *secondPlayer);
         uint8_t ifHit(string coordinates, ConnectedClient *Player);
-        uint8_t getPlayersNumbers();
-        vector<ConnectedClients*> getPlayers();
+        uint8_t getPlayersNumbers(){return players.size()};
+        vector<ConnectedClients*> getPlayers(){return players};
+        uint8_t getTurn(){;
     protected:
     private:
         //
@@ -78,7 +82,7 @@ class GameSocket
         //
         //  Pointers to ConnectedClient class type objects responsible for connecting players with game
         //
-        ConnectedClient *player1, *player2;
+        vector<ConnectedClients*> players;
         //
         //  The turn variable is information who is supposed to make his movement right now
         //
