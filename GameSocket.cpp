@@ -2,7 +2,7 @@
 
 GameSocket::GameSocket(ConnectedClient *firstPlayer)
 {
-    this->player1 = firstPlayer;
+    this->players.push_back(firstPlayer);
 }
 
 GameSocket::~GameSocket()
