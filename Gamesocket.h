@@ -6,6 +6,36 @@ class ConnectedClient;
 class GameSocket
 {
     public:
+        ////
+        //CONSTANTS
+        ////
+    
+        //
+        //  It's returned by checking current state of chosen field in method ifHit(coordinates);
+        //
+        //  Is returned when there's neither ship nor the field was hit by other player.
+        //
+    const uint8_t NOT_HIT_NO_SHIP;
+        //
+        //  It's returned by checking current state of chosen field in method ifHit(coordinates);
+        //
+        //  Is returned when there's no ship but the field was hit by other player.
+        //
+    const uint8_t HIT_NO_SHIP;
+        //
+        //  It's returned by checking current state of chosen field in method ifHit(coordinates);
+        //
+        //  Is returned when there's ship but the field was not hit by other player.
+        //
+    const uint8_t NOT_HIT_SHIP;
+        //
+        //  It's returned by checking current state of chosen field in method ifHit(coordinates);
+        //
+        //  Is returned when there's ship and the field was hit by other player.
+        //
+    const uint8_t HIT_SHIP;
+    const uint8_t PLAYER1_TURN;
+    const uint8_t PLAYER@_TURN;
         //
         //  Virtual destructor of GameSocket
         //
@@ -16,6 +46,9 @@ class GameSocket
         //  It returns information if second player is already in game (false - is not, true - is)
         //
         bool addPlayer(ConnectedClient *secondPlayer);
+        uint8_t ifHit(string coordinates, ConnectedClient *Player);
+        uint8_t getPlayersNumbers();
+        vector<ConnectedClients*> getPlayers();
     protected:
     private:
         //
@@ -41,7 +74,7 @@ class GameSocket
         //      2 - hit ship
         //      3 - hit blank pole
         //
-        char battletide[10][10][2];
+        uint8_t battletide[10][10][2];
         //
         //  Pointers to ConnectedClient class type objects responsible for connecting players with game
         //
@@ -51,7 +84,7 @@ class GameSocket
         //
         //  false - first player, true - second player
         //
-        bool turn;
+        uint8_t turn;
 };
 
 #endif // GAMESOCKET_H
