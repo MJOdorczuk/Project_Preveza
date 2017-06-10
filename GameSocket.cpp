@@ -13,6 +13,6 @@ GameSocket::~GameSocket()
 bool GameSocket::addPlayer(ConnectedClient *secondPlayer)
 {
     if(this->player2) return true;
-    this->player2 = secondPlayer;
+    players.push_back(secondPlayer);
     return false;
 }
