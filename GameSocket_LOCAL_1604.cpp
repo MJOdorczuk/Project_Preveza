@@ -1,7 +1,4 @@
 #include "gamesocket.h"
-#include <iostream>
-#include <vector>
-#include <string>
 
 GameSocket::GameSocket(ConnectedClient *firstPlayer)
 {
@@ -15,8 +12,7 @@ GameSocket::~GameSocket()
 
 bool GameSocket::addPlayer(ConnectedClient *secondPlayer)
 {
-    if(this->players.size()>1) return true;
+    if(this->player2) return true;
     players.push_back(secondPlayer);
     return false;
 }
-//test

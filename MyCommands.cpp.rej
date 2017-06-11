@@ -1,0 +1,27 @@
+diff a/MyCommands.cpp b/MyCommands.cpp	(rejected hunks)
+@@ -6,24 +6,9 @@
+ 	this->registerCommand(new CmdHelp("help", "pomoc"));
+ 	this->registerCommand(new CmdExit("exit", "koniec sesji klienta"));
+ 	this->registerCommand(new CmdList("list", "wyswietl uzytkownikow"));
+-	//this->registerCommand(new CmdMsg());
++	this->registerCommand(new CmdMsg("msg","wyslij wiadomosc"));
+ }
+ 
+-
+-
+-bool CmdList::exec(ConnectedClient *client, vector<string> args) 
+-{  
+-	/*for(int i=0; i<client->server->listClients().size() ;i++)
+-	{
+-
+-	client->putline("\r\n"+client->server->listClients().at(i)->getUser());
+-	client->putline
+-	}*/
+-	return true;
+-	
+-}
+-
+-
+ bool CmdHelp::exec(ConnectedClient *client, vector<string> args) 
+ {  
+ 	vector<Command*> list = client->server->listCommands();

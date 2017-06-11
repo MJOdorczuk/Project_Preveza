@@ -1,5 +1,9 @@
 #ifndef GAMESOCKET_H
 #define GAMESOCKET_H
+#include <iostream>
+#include <cstdio>
+#include <vector>
+#include <string>
 
 class ConnectedClient;
 
@@ -9,6 +13,8 @@ class GameSocket
         ////
         //CONSTANTS
         ////
+
+
 
         const unsigned short MAX_PLAYER_NUMBER = 2;
         //
@@ -56,11 +62,12 @@ class GameSocket
         //
         //  It returns information if second player is already in game (false - is not, true - is)
         //
+
         bool addPlayer(ConnectedClient *secondPlayer);
         unsigned short ifHit(string coordinates, ConnectedClient *Player);
-        unsigned short getPlayersNumbers(){return players.size()};
-        vector<ConnectedClients*> getPlayers(){return players};
-        unsigned short getTurn(){return this->turn};
+        unsigned short getPlayersNumbers(){return players.size();}
+        vector <ConnectedClients*> getPlayers(){return players;}
+        unsigned short getTurn(){return this->turn;}
     protected:
     private:
         //
@@ -90,7 +97,7 @@ class GameSocket
         //
         //  Pointers to ConnectedClient class type objects responsible for connecting players with game
         //
-        vector<ConnectedClients*> players;
+        vector <ConnectedClients*> players;
         //
         //  The turn variable is information who is supposed to make his movement right now
         //
