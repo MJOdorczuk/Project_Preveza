@@ -12,7 +12,8 @@ GameSocket::~GameSocket()
 
 bool GameSocket::addPlayer(ConnectedClient *secondPlayer)
 {
-    if(this->player2) return true;
+    if(this->players.size()>1) return true;
     players.push_back(secondPlayer);
     return false;
 }
+//test

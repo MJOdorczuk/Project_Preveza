@@ -9,31 +9,44 @@ class GameSocket
         ////
         //CONSTANTS
         ////
-
+        
+        const unsigned short MAX_PLAYER_NUMBER = 2;
         //
         //  It's returned by checking current state of chosen field in method ifHit(coordinates);
         //
         //  Is returned when there's neither ship nor the field was hit by other player.
         //
-        const unsigned short NOT_HIT_NO_SHIP;
+        const unsigned short NOT_HIT_NO_SHIP = 0;
         //
         //  It's returned by checking current state of chosen field in method ifHit(coordinates);
         //
         //  Is returned when there's no ship but the field was hit by other player.
         //
-        const unsigned short HIT_NO_SHIP;
+        const unsigned short HIT_NO_SHIP = 1;
         //
         //  It's returned by checking current state of chosen field in method ifHit(coordinates);
         //
         //  Is returned when there's ship but the field was not hit by other player.
         //
-        const unsigned short NOT_HIT_SHIP;
+        const unsigned short NOT_HIT_SHIP = 2;
         //
         //  It's returned by checking current state of chosen field in method ifHit(coordinates);
         //
         //  Is returned when there's ship and the field was hit by other player.
         //
-        const unsigned short HIT_SHIP;
+        const unsigned short HIT_SHIP = 3;
+        //
+        //  It's returned by method getTurn(turn).
+        //
+        //  Is returned when first player is supposed to make a move.
+        //
+        const unsigned short PLAYER1_TURN = 0;
+        //
+        //  It's returned by method getTurn(turn).
+        //
+        //  Is returned when second player is supposed to make a move.
+        //
+        const unsigned short PLAYER2_TURN = 1;
         //
         //  Virtual destructor of GameSocket
         //
@@ -65,7 +78,7 @@ class GameSocket
         //
         //  First argument corresponds to X-axis position
         //  Second argument corresponds to Y-axis position
-        //  Third argument corresponds to number of plane (0 - plane of first player, 1 - plane of second player, etc)
+        //  Third argument corresponds to number of plane (0 - plane of first player, 1 - plane of second player)
         //
         //  The array can have four value
         //      0 - no ship, no hit
@@ -73,7 +86,7 @@ class GameSocket
         //      2 - hit ship
         //      3 - hit blank pole
         //
-        vector<unsigned short[10][10]> battletide;
+        unsigned short battletide[10][10][2];
         //
         //  Pointers to ConnectedClient class type objects responsible for connecting players with game
         //
@@ -81,9 +94,7 @@ class GameSocket
         //
         //  The turn variable is information who is supposed to make his movement right now
         //
-        //  0 - first player
-        //  1 - second player
-        //  etc.
+        //  false - first player, true - second player
         //
         unsigned short turn;
 };

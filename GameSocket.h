@@ -9,43 +9,44 @@ class GameSocket
         ////
         //CONSTANTS
         ////
-    
+
+        const unsigned short MAX_PLAYER_NUMBER = 2;
         //
         //  It's returned by checking current state of chosen field in method ifHit(coordinates);
         //
         //  Is returned when there's neither ship nor the field was hit by other player.
         //
-    const uint8_t NOT_HIT_NO_SHIP;
+        const unsigned short NOT_HIT_NO_SHIP = 0;
         //
         //  It's returned by checking current state of chosen field in method ifHit(coordinates);
         //
         //  Is returned when there's no ship but the field was hit by other player.
         //
-    const uint8_t HIT_NO_SHIP;
+        const unsigned short HIT_NO_SHIP = 1;
         //
         //  It's returned by checking current state of chosen field in method ifHit(coordinates);
         //
         //  Is returned when there's ship but the field was not hit by other player.
         //
-    const uint8_t NOT_HIT_SHIP;
+        const unsigned short NOT_HIT_SHIP = 2;
         //
         //  It's returned by checking current state of chosen field in method ifHit(coordinates);
         //
         //  Is returned when there's ship and the field was hit by other player.
         //
-    const uint8_t HIT_SHIP;
+        const unsigned short HIT_SHIP = 3;
         //
         //  It's returned by method getTurn(turn).
         //
         //  Is returned when first player is supposed to make a move.
         //
-    const uint8_t PLAYER1_TURN;
+        const unsigned short PLAYER1_TURN = 0;
         //
         //  It's returned by method getTurn(turn).
         //
         //  Is returned when second player is supposed to make a move.
         //
-    const uint8_t PLAYER2_TURN;
+        const unsigned short PLAYER2_TURN = 1;
         //
         //  Virtual destructor of GameSocket
         //
@@ -56,10 +57,10 @@ class GameSocket
         //  It returns information if second player is already in game (false - is not, true - is)
         //
         bool addPlayer(ConnectedClient *secondPlayer);
-        uint8_t ifHit(string coordinates, ConnectedClient *Player);
-        uint8_t getPlayersNumbers(){return players.size()};
+        unsigned short ifHit(string coordinates, ConnectedClient *Player);
+        unsigned short getPlayersNumbers(){return players.size()};
         vector<ConnectedClients*> getPlayers(){return players};
-        uint8_t getTurn(){return this->turn};
+        unsigned short getTurn(){return this->turn};
     protected:
     private:
         //
@@ -85,7 +86,7 @@ class GameSocket
         //      2 - hit ship
         //      3 - hit blank pole
         //
-        uint8_t battletide[10][10][2];
+        unsigned short battletide[10][10][2];
         //
         //  Pointers to ConnectedClient class type objects responsible for connecting players with game
         //
@@ -95,7 +96,7 @@ class GameSocket
         //
         //  false - first player, true - second player
         //
-        uint8_t turn;
+        unsigned short turn;
 };
 
 #endif // GAMESOCKET_H
