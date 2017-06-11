@@ -1,20 +1,32 @@
 #ifndef GAMESOCKET_H
 #define GAMESOCKET_H
-#include <iostream>
-#i
+
 #include <vector>
-#include <string.h>
+#include <string>
+
+using namespace std;
 
 class ConnectedClient;
 
 class GameSocket
 {
+    private:
+        //
+        //  Pointers to ConnectedClient class type objects responsible for connecting players with game
+        //
+        vector <ConnectedClient*> players;
+        //
+        //  The turn variable is information who is supposed to make his movement right now
+        //
+        //  false - first player, true - second player
+        //
+        unsigned short turn;
     public:
         ////
         //CONSTANTS
         ////
 
-    
+
 
         const unsigned short MAX_PLAYER_NUMBER = 2;
         //
@@ -65,14 +77,17 @@ class GameSocket
 
         bool addPlayer(ConnectedClient *secondPlayer);
         unsigned short ifHit(string coordinates, ConnectedClient *Player);
-        unsigned short getPlayersNumbers(){return players.size();}
-        vector <ConnectedClients*> getPlayers(){return players;}
-        unsigned short getTurn(){return this->turn;}
+        unsigned short getPlayersNumbers(){return players.size()}
+        vector <ConnectedClient*> getPlayers(){return players}
+        unsigned short getTurn(){return turn}
     protected:
     private:
         //
         //  Private constructor of class
-        //
+        //#include <iostream>
+#include <cstdio>
+#include <vector>
+#include <string>
         //  Constructor assigns pointer to first player who starts the game
         //
         GameSocket(ConnectedClient *firstPlayer);
@@ -94,16 +109,8 @@ class GameSocket
         //      3 - hit blank pole
         //
         unsigned short battletide[10][10][2];
-        //
-        //  Pointers to ConnectedClient class type objects responsible for connecting players with game
-        //
-        vector <ConnectedClients*> players;
-        //
-        //  The turn variable is information who is supposed to make his movement right now
-        //
-        //  false - first player, true - second player
-        //
-        unsigned short turn;
+
+
 };
 
 #endif // GAMESOCKET_H
