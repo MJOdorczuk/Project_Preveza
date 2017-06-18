@@ -1,11 +1,9 @@
 #include "gamesocket.h"
-#include <iostream>
-#include <vector>
-#include <string>
 
 GameSocket::GameSocket(ConnectedClient *firstPlayer)
 {
     this->players.push_back(firstPlayer);
+    this->battletide.push_back(new unsigned short[10][10]);
 }
 
 GameSocket::~GameSocket()
@@ -15,8 +13,8 @@ GameSocket::~GameSocket()
 
 bool GameSocket::addPlayer(ConnectedClient *secondPlayer)
 {
-    if(this->players.size()>1) return true;
-    players.push_back(secondPlayer);
+    if(this->getPlayersNumbers()>1) return true;
+    this->players.push_back(secondPlayer);
+    this->battletide.push_back(new unsigned short[10][10]);
     return false;
 }
-//test
