@@ -27,31 +27,31 @@ class GameSocket
 
 
 
-        const unsigned short MAX_PLAYER_NUMBER;// = 2;
+        const unsigned short MAX_PLAYER_NUMBER = 2;
         //
         //  It's returned by checking current state of chosen field in method ifHit(coordinates);
         //
         //  Is returned when there's neither ship nor the field was hit by other player.
         //
-        const unsigned short NOT_HIT_NO_SHIP;// = 0;
+        const unsigned short NOT_HIT_NO_SHIP = 0;
         //
         //  It's returned by checking current state of chosen field in method ifHit(coordinates);
         //
         //  Is returned when there's no ship but the field was hit by other player.
         //
-        const unsigned short HIT_NO_SHIP;// = 1;
+        const unsigned short HIT_NO_SHIP = 1;
         //
         //  It's returned by checking current state of chosen field in method ifHit(coordinates);
         //
         //  Is returned when there's ship but the field was not hit by other player.
         //
-        const unsigned short NOT_HIT_SHIP;// = 2;
+        const unsigned short NOT_HIT_SHIP = 2;
         //
         //  It's returned by checking current state of chosen field in method ifHit(coordinates);
         //
         //  Is returned when there's ship and the field was hit by other player.
         //
-        const unsigned short HIT_SHIP;// = 3;
+        const unsigned short HIT_SHIP;/ = 3;
         //
         //  It's returned by method getTurn(turn).
         //
