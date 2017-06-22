@@ -25,6 +25,7 @@ public:
 	bool getReady();
 	void setReady(bool state);
 	void setGame(GameSocket * game){this->game = game;};
+	GameSocket * getGame(){return this->game;};
 
 protected:
     static void* run(void *);
