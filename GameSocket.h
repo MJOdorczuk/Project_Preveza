@@ -88,7 +88,7 @@ class GameSocket
         //
         const unsigned short PLAYER2_TURN = 1;
 
-        const unsigned short MISS = 0, HIT = 1, NOT_AVAILABLE = 2, WIN = 3, ERR = 666, AVAILABLE = 1, ACCES_DENIED = 404;
+        const unsigned short MISS = 0, HIT = 1, NOT_AVAILABLE = 2, WIN = 3, ERR = 666, AVAILABLE = 1, ACCES_DENIED = 404, SHIP_SET = 4, BLANK = 5;
         const unsigned short SETUP_PHASE = 0, BATTLE_PHASE = 1;
 
         ////
