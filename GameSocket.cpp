@@ -188,7 +188,6 @@ unsigned short GameSocket::makeMove(string command, ConnectedClient* Player)
             this->battletide[x][y][(turn+1)%players.size()] = HIT_SHIP;
             this->points[(turn+1)%players.size()]--;
             if(this->points[(turn+1)%players.size()] == 0) return WIN;
-            this->turn = (this->turn+1)%players.size();
             return HIT;
         }
         else return ERR;
