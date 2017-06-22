@@ -11,7 +11,7 @@ TCPServer::~TCPServer()
 {
 	if(_is_running) stop();
 	delete cmdEngine;
-	for(int i=0; i<games.size(); i++) delete games.at(i);
+	for(vector<GameSocket *>::size_type i=0; i<games.size(); i++) delete games.at(i);
 }
 
 
@@ -130,7 +130,7 @@ void* TCPServer::run(void *arg)
 GameSocket * TCPServer::startGame(ConnectedClient * player)
 {
     bool helpingtemp = false;
-    for(int i=0; i<clients.size(); i++){if(clients.at(i) == player) helpingtemp = true;}
+    for(vector<ConnectedClient *>::size_type i=0; i<clients.size(); i++){if(clients.at(i) == player) helpingtemp = true;}
     if(!helpingtemp) return NULL;
     games.push_back(new GameSocket(player));
     return games.at(games.size());
@@ -138,7 +138,7 @@ GameSocket * TCPServer::startGame(ConnectedClient * player)
 
 void TCPServer::order66(GameSocket * gametokill)
 {
-    for(int i=0; i<games.size(); i++)
+    for(vector<GameSocket *>::size_type i=0; i<games.size(); i++)
     {
         if(games.at(i) == gametokill)
         {

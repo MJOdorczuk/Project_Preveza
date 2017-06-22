@@ -13,6 +13,12 @@ CommandEngine::CommandEngine()
 	this->registerCommand(new CmdStart("start","rozpocznij nowa gre"));
 }
 
+bool CmdStart::exec(ConnectedClient *client, vector<string> args)
+{
+    client->setGame(client->server->startGame(client));
+    return true;
+}
+
 bool CmdHelp::exec(ConnectedClient *client, vector<string> args)
 {
 	vector<Command*> list = client->server->listCommands();
@@ -51,10 +57,10 @@ bool CmdMsg::exec(ConnectedClient *client, vector<string> args)
 
 bool CmdEnd::exec(ConnectedClient *client, vector<string> args)
 {
-    if(client->game == NULL) return false;
-    vector<ConnectedClient *> players = client->game->getPlayers();
+    if(client->getGame() == NULL) return false;
+    vector<ConnectedClient *> players = client->getGame()->getPlayers();
     GameSocket * game = client->getGame();
-    for(int i=0; i<players.size(); i++)
+    for(vector<ConnectedClient *>::size_type i=0; i<players.size(); i++)
     {
         players.at(i)->setGame(NULL);
         players.at(i)->putline(Common::EOLN + "Gra zakonczona przez " + client->getUser());
@@ -71,6 +77,7 @@ bool CmdInvite::exec(ConnectedClient *client, vector<string> args)
     client->getGame()->addPlayer(player);
     player->putline(Common::EOLN + "Dolaczasz do gry rozpoczetej przez " + client->getUser());
     client->putline(Common::EOLN + player->getUser() + " dolacza do twojej gry");
+    return true;
 }
 
 bool CmdMove::exec(ConnectedClient *client, vector<string> args)
@@ -79,7 +86,7 @@ bool CmdMove::exec(ConnectedClient *client, vector<string> args)
     vector<ConnectedClient *> players = client->getGame()->getPlayers();
     int i = 0;
     unsigned short response = client->getGame()->makeMove(args.at(1),client);
-    switch(response):
+    switch(response)
         {
         case 0:
             {
@@ -101,7 +108,7 @@ bool CmdMove::exec(ConnectedClient *client, vector<string> args)
         case 3:
             {
                 client->putline(Common::EOLN + "Trafiony zatopiony! Wygrales!");
-                for(int i=0; i<players.size(); i++)
+                for(vector<ConnectedClient *>::size_type i=0; i<players.size(); i++)
                 {
                     if(players.at(i)!=client) players.at(i)->putline(Common::EOLN + "Troche wlasnie przegrales. :( ");
                 }
@@ -120,7 +127,7 @@ bool CmdMove::exec(ConnectedClient *client, vector<string> args)
             }
         case 6:
             {
-                for(int i=0; i<players.size(); i++){players.at(i)->putline(Common::EOLN + "Gra się rozpoczyna");}
+                for(vector<ConnectedClient *>::size_type i=0; i<players.size(); i++){players.at(i)->putline(Common::EOLN + "Gra się rozpoczyna");}
                 break;
             }
         case 404:
@@ -134,4 +141,5 @@ bool CmdMove::exec(ConnectedClient *client, vector<string> args)
                 break;
             }
         }
+        return true;
 }

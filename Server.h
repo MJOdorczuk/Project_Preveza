@@ -19,6 +19,8 @@ public:
 	vector<ConnectedClient*> listClients();
 	ConnectedClient* findClient(string client_name);
 	vector<Command*> listCommands();
+    void order66(GameSocket * gametokill);
+    GameSocket* startGame(ConnectedClient * player);
 
 protected:
 	friend class ConnectedClient;
@@ -28,8 +30,8 @@ protected:
     virtual void removeClient(ConnectedClient * client);
 	static void* run(void *);
 	CommandEngine *cmdEngine;
-	GameSocket* startGame(ConnectedClient * player);
-	void order66(GameSocket * gametokill);
+
+
 
 
 private:

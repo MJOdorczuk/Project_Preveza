@@ -1,12 +1,7 @@
 #include "common.h"
 #include "Server.h"
 
-int main()
-{
-    return 0;
-}
 
-/*
 int main()
 {
     TCPServer server;
@@ -17,4 +12,4 @@ int main()
 		cout << "*";
 	}
     return NULL;
-    }*/
+    }

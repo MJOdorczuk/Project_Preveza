@@ -3,10 +3,10 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include <pthread.h>
+#include "pthread.h"
 #include <ctime>
 #include <exception>
-
+#define WIN32
 #ifdef WIN32
 	#define WIN32_LEAN_AND_MEAN
 	#include <WinSock2.h>
@@ -22,7 +22,11 @@
 	#include <sys/socket.h>
 	#include <unistd.h>
 #endif
-
+class exception
+{
+    public: std::string x;
+    exception(std::string x):x(x){}
+};
 class Common
 {
 public:

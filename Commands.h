@@ -7,7 +7,15 @@
 using namespace std;
 
 class ConnectedClient;
-
+/*
+class exception
+{
+    string txt;
+    exception(string txt)
+    {
+        this->txt = txt;
+    }
+};*/
 class Command
 {
 public:
