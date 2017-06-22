@@ -122,6 +122,7 @@ unsigned short GameSocket::ifDirectionCorrect(char direction, unsigned short x, 
         case('E'):
             {
                 dx = 1;
+
                 break;
             }
         default:{break;}
@@ -155,6 +156,8 @@ unsigned short GameSocket::makeMove(string command, ConnectedClient* Player)
         {
             putShip(x,y,command.at(0),turn);
             this->ships[turn]++;
+            this->currentX = 666;
+            this->currentY = 666;
             for(int i = 0; i < players.size(); i++) if(this->ships[i]<10) return SHIP_SET;
             this->phase = BATTLE_PHASE;
             return SHIP_SET;
