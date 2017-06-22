@@ -4,6 +4,7 @@
 #include "Commands.h"
 
 class TCPServer;
+class GameSocket;
 
 class ConnectedClient
 {
@@ -23,6 +24,7 @@ public:
 	TCPServer* server;
 	bool getReady();
 	void setReady(bool state);
+	void setGame(GameSocket * game){this->game = game;};
 
 protected:
     static void* run(void *);
@@ -34,6 +36,7 @@ private:
     int connected_socket;
     string user, pass;
     pthread_t thread_id;
+	GameSocket * game;
 	volatile bool _is_running;
     
 };
