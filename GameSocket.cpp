@@ -160,7 +160,7 @@ unsigned short GameSocket::makeMove(string command, ConnectedClient* Player)
             this->currentY = 666;
             for(int i = 0; i < players.size(); i++) if(this->ships[i]<10) return SHIP_SET;
             this->phase = BATTLE_PHASE;
-            return SHIP_SET;
+            return MATCH_STARTS;
         }
     }
     if(command.at(0)<'A' || command.at(0)>'J' || command.at(1)<'0' || command.at(1)>'9') return NOT_AVAILABLE;
