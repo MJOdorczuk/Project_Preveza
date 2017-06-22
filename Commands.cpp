@@ -5,7 +5,7 @@ vector<string> Command::split(string str, const string& delimiter)
 {
 	vector<string> results;
 	results.clear();
-    size_t pos = 0; 
+    size_t pos = 0;
     while ((pos = str.find(delimiter)) != string::npos) //znajdŸ pozycjê 'delimitera', jeœli siê da
     {
         results.push_back(str.substr(0, pos));
@@ -37,7 +37,7 @@ vector<Command*> CommandEngine::listCommands()
 bool CommandEngine::exec(ConnectedClient *client, string t)
 {
 	vector<string> args = Command::split(t, " ");
-	if(args.size() == 0) throw exception("missing command name");
+	if(args.size() == 0) throw ::exception("missing command name");
 
 	vector<Command*>::iterator it;
 	for(it = commands.begin(); it != commands.end(); ++it)
@@ -48,7 +48,7 @@ bool CommandEngine::exec(ConnectedClient *client, string t)
 			return true;
 		}
 	}
-	throw exception("command not recognized.");
+	throw ::exception("command not recognized.");
 }
 
 void CommandEngine::registerCommand(Command *command)

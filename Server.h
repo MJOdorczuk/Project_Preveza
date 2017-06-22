@@ -19,15 +19,19 @@ public:
 	vector<ConnectedClient*> listClients();
 	ConnectedClient* findClient(string client_name);
 	vector<Command*> listCommands();
+    void order66(GameSocket * gametokill);
+    GameSocket* startGame(ConnectedClient * player);
 
-protected:	
+protected:
 	friend class ConnectedClient;
 	friend class Command;
 
     virtual void addClient(ConnectedClient * client);
-    virtual void removeClient(ConnectedClient * client);    
-	static void* run(void *); 
+    virtual void removeClient(ConnectedClient * client);
+	static void* run(void *);
 	CommandEngine *cmdEngine;
+
+
 
 
 private:

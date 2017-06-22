@@ -11,6 +11,7 @@ TCPServer::~TCPServer()
 {
 	if(_is_running) stop();
 	delete cmdEngine;
+	for(vector<GameSocket *>::size_type i=0; i<games.size(); i++) delete games.at(i);
 }
 
 
@@ -27,13 +28,13 @@ ConnectedClient* TCPServer::findClient(string user)
 	return NULL;
 }
 
-vector<Command*> TCPServer::listCommands() 
-{ 
-	return cmdEngine->listCommands(); 
+vector<Command*> TCPServer::listCommands()
+{
+	return cmdEngine->listCommands();
 }
-vector<ConnectedClient*> TCPServer::listClients() 
-{ 
-	return clients; 
+vector<ConnectedClient*> TCPServer::listClients()
+{
+	return clients;
 }
 
 void TCPServer::addClient(ConnectedClient * client)
@@ -68,16 +69,16 @@ void TCPServer::stop()
 	_is_running = false;
 }
 
-bool TCPServer::is_running() 
-{ 
-	return _is_running; 
+bool TCPServer::is_running()
+{
+	return _is_running;
 }
 
 void* TCPServer::run(void *arg)
 {
     cerr << "TCPServer::run" << endl;
     TCPServer *server = (TCPServer *)arg;
-   
+
     server->my_socket = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
 	if( server->my_socket == -1)
     {
@@ -104,7 +105,7 @@ void* TCPServer::run(void *arg)
         return NULL;
     }
 
-	while(server->is_running()) 
+	while(server->is_running())
 	{
 		sockaddr_in remote;
 		socklen_t sockaddrlen = sizeof(remote);
@@ -122,8 +123,27 @@ void* TCPServer::run(void *arg)
             cout << "accept error." << endl;
 			server->stop();
         }
-    } 
+    }
     return NULL;
 }
 
+GameSocket * TCPServer::startGame(ConnectedClient * player)
+{
+    bool helpingtemp = false;
+    for(vector<ConnectedClient *>::size_type i=0; i<clients.size(); i++){if(clients.at(i) == player) helpingtemp = true;}
+    if(!helpingtemp) return NULL;
+    games.push_back(new GameSocket(player));
+    return games.at(games.size());
+}
 
+void TCPServer::order66(GameSocket * gametokill)
+{
+    for(vector<GameSocket *>::size_type i=0; i<games.size(); i++)
+    {
+        if(games.at(i) == gametokill)
+        {
+            delete gametokill;
+            games.at(i) = NULL; //Really bad solution. Just no time to make it better.
+        }
+    }
+}

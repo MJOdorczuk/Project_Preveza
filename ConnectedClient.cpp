@@ -43,7 +43,7 @@ string ConnectedClient::getline(bool asterisks)
             if(asterisks) c = '*';
             send(connected_socket, &c, 1, 0); //echo
         }
-		if (rxbytes == -1) { this->stop(); throw exception("client disconnected"); }
+		if (rxbytes == -1) { this->stop(); throw ::exception("client disconnected"); }
     } while (rxbytes==1 && c!='\r');
     return line;
 }
@@ -80,7 +80,7 @@ void* ConnectedClient::run(void* arg)
         client->putline(Common::EOLN + "Cmd: ");
 		try {
 			c = client->getline();
-		} 
+		}
 		catch(exception e)
 		{
 			client->putline(Common::EOLN + e.what());
@@ -89,14 +89,14 @@ void* ConnectedClient::run(void* arg)
 
         cout << client->user << ": " << c << endl;
 
-		try 
+		try
 		{
 			client->server->cmdEngine->exec(client, c);
 			//if(c == "help")client->putline(Common::EOLN + "Pierwsza pomoc.");
 			//else
 			//	if(c == "exit")client->putline(Common::EOLN + "XXX.");
 
-		} 
+		}
 		catch(exception e)
 		{
 			client->putline(Common::EOLN + e.what());
@@ -108,7 +108,7 @@ void* ConnectedClient::run(void* arg)
     return NULL;
 }
 
-void ConnectedClient::getReady()
+bool ConnectedClient::getReady()
 {
     return this->ready;
 }

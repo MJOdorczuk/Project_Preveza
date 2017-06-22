@@ -2,8 +2,8 @@
 
 Common common;
 
- void Common::sleep(uint32_t s) 
-{ 
+ void Common::sleep(uint32_t s)
+{
 	#ifdef WIN32
 	Sleep(1000*s);
 	#else
@@ -19,7 +19,7 @@ Common::Common()
 	if(0 != WSAStartup(wVersionRequested, &wsaData))
 	{
 		cerr << "problem: WSAStartup" << endl;
-		throw exception("WSAStartup");
+		throw ::exception("WSAStartup");
 	}
 	#endif
 }
